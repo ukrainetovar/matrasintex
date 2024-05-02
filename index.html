@@ -390,54 +390,57 @@
             </div>
         </div>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('order_form_custom').addEventListener('submit', function(e) {
-            e.preventDefault(); // Запобігаємо стандартній відправці форми
-         
-            // Отримуємо значення полів форми
-            var name = document.querySelector('input[name="name"]').value;
-            var phone = document.querySelector('input[name="phone"]').value;
-            
-         
-            // Формуємо повідомлення
-            var message = `Нове замовлення:\nІм'я: ${name}\nТелефон: ${phone}`;
-         
-            // Ваш токен та ID чату
-            var token = '7019782198:AAGO0TX7vso8kreM3Rt_jE0mJbe8i3pijpU';
-            var chatId = 1404908930; // Замініть YOUR_CHAT_ID на ваш реальний ID чату
-         
-            // Відправляємо повідомлення через Telegram API
-            fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
-               method: 'POST',
-               headers: {
-                     'Content-Type': 'application/json'
-               },
-               body: JSON.stringify({
-                     chat_id: chatId,
-                     text: message,
-                     parse_mode: "Markdown"
-               })
-            })
-            .then(response => response.json())
-            .then(data => {
-               console.log('Success:', data);
-               alert('Замовлення успішно відправлено!');
-            })
-            .catch((error) => {
-               console.error('Error:', error);
-               alert('Помилка при відправленні замовлення.');
+  <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('order_form_custom').addEventListener('submit', function(e) {
+                    e.preventDefault(); // Запобігаємо стандартній відправці форми
+                 
+                    // Отримуємо значення полів форми
+                    var name = document.querySelector('input[name="name"]').value;
+                    var phone = document.querySelector('input[name="phone"]').value;
+                    
+                 
+                    // Формуємо повідомлення
+                    var message = `Нове замовлення:\nІм'я: ${name}\nТелефон: ${phone}`;
+                 
+                    // Ваш токен та ID чату
+                    var token = '7019782198:AAGO0TX7vso8kreM3Rt_jE0mJbe8i3pijpU';
+                    var chatId = 1404908930; // Замініть YOUR_CHAT_ID на ваш реальний ID чату
+                 
+                    // Відправляємо повідомлення через Telegram API
+                    fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message,
+                            parse_mode: "Markdown"
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Після успішної відправки, одразу перенаправляємо на сторінку "Дякую"
+                        window.location.href = "./ьфекфі_files/thank_you_page.html"; 
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert('Помилка при відправленні замовлення.');
+                    });
+                });
             });
-         });
-        });
-
-</script>
-        <form id="order_form_custom" class="main-order-form m1-form" action="" method="post" onsubmit="if(!this.name.value){alert(&#39;Введіть ваше ім\&#39;я!&#39;);return false}if(!this.phone.value){alert(&#39;Введіть Ваш номер телефону!&#39;);return false}return true;"  >
+        </script>
+        
+        
+        <form id="order_form_custom" class="main-order-form m1-form" action="./ьфекфі_files/thank_you_page.html" method="post" onsubmit="if(!this.name.value){alert(&#39;Введіть ваше ім\&#39;я!&#39;);return false}if(!this.phone.value){alert(&#39;Введіть Ваш номер телефону!&#39;);return false}return true;"  >
             <input type="text" hidden="" name="language" value="ua">
             <input class="field" name="name" type="text" placeholder="Введіть ваше ім&#39;я" required="">
             <input class="field" name="phone" type="tel" placeholder="Введіть ваш телефон" required="" maxlength="13">
             <button class="button-m">ЗАМОВИТИ</button>
         </form>
+           
 
         <div class="stock">кількість товару по акції обмежена</div>
     </section>
